@@ -5,8 +5,13 @@ MODULE_LICENSE("GPL v2");
 MODULE_AUTHOR("test user");
 MODULE_DESCRIPTION("Hello world kernel module");
 
+
+static int param1 = 1;
+
+module_param(param1, int, S_IRUGO);
+
 static int mymodule_init(void) {
-        printk(KERN_ALERT "Hello world!\n");
+        printk(KERN_ALERT "Hello world! %d \n",param1);
         return 0;
 }
 

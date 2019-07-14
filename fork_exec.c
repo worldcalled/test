@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <stdlib.h>
 
 int main()
 {
@@ -8,13 +9,14 @@ int main()
   int         status;
   int	      result;
   int         return_code = 0;
+  char *path = "/usr/lib/klibc/bin/ls";
+  char *argv[] = {"ls",NULL};
 
   if ((p_id = fork()) == 0) {
     /* 子プロセス */
     printf("子プロセス開始\n");
-
-    sleep(20);
-
+    sleep(10);
+    execv(path,argv);
     printf("子プロセス終了\n");
   }
   else {
